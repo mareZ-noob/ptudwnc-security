@@ -18,12 +18,11 @@ public class AdminClientController {
 
     // curl -X POST http://localhost:8088/admin/clients \
     //   -H "Content-Type: application/json" -H "X-API-Key: internal-simple-api-key" \
-    //   -d '{"name": "Mobile App", "requestsPerMinute": 60}'
+    //   -d '{"name": "Mobile App"}'
     @PostMapping
     public ResponseEntity<?> createClient(@RequestBody CreateClientRequest request) {
         ApiClient client = clientService.createClient(
-            request.getName(),
-            request.getRequestsPerMinute()
+            request.getName()
         );
 
         return ResponseEntity.ok(Map.of(

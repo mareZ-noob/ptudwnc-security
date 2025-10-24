@@ -7,5 +7,4 @@ import lombok.Setter;
 @Setter
 public class CreateClientRequest {
     private String name;
-    private Integer requestsPerMinute = 100;
 }

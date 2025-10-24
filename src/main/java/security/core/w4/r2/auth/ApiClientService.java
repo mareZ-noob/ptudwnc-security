@@ -18,7 +18,7 @@ public class ApiClientService {
         this.clientRepository = clientRepository;
     }
 
-    public ApiClient createClient(String name, Integer requestsPerMinute) {
+    public ApiClient createClient(String name) {
         String clientId = "client_" + UUID.randomUUID().toString().substring(0, 8);
         String apiKey = "sk_" + UUID.randomUUID().toString().replace("-", "");
 
@@ -26,7 +26,6 @@ public class ApiClientService {
         client.setClientId(clientId);
         client.setApiKey(passwordEncoder.encode(apiKey));
         client.setName(name);
-        client.setRequestsPerMinute(requestsPerMinute);
 
         ApiClient saved = clientRepository.save(client);
 

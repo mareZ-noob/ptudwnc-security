@@ -29,8 +29,6 @@ public class ApiClient {
 
     private boolean active = true;
 
-    private Integer requestsPerMinute = 100;
-
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 }

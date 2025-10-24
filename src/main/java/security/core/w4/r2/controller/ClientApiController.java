@@ -27,8 +27,7 @@ public class ClientApiController {
         return ResponseEntity.ok(Map.of(
             "message", "Protected data",
             "clientId", client.getClientId(),
-            "clientName", client.getName(),
-            "rateLimit", client.getRequestsPerMinute()
+            "clientName", client.getName()
         ));
     }
 }

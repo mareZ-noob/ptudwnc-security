@@ -22,11 +22,8 @@ public class ClientApiKeyFilter extends OncePerRequestFilter {
 
     private final ApiClientService clientService;
 
-    private final ApiRateLimiter rateLimiter;
-
-    public ClientApiKeyFilter(ApiClientService clientService, ApiRateLimiter rateLimiter) {
+    public ClientApiKeyFilter(ApiClientService clientService) {
         this.clientService = clientService;
-        this.rateLimiter = rateLimiter;
     }
 
     @Override
@@ -73,13 +70,6 @@ public class ClientApiKeyFilter extends OncePerRequestFilter {
         }
 
         ApiClient client = clientOpt.get();
-
-        // Rate limiting
-        if (!rateLimiter.tryConsume(clientId, client.getRequestsPerMinute())) {
-            sendError(response, HttpServletResponse.SC_CONFLICT,
-                    "Rate limit exceeded");
-            return;
-        }
 
         // Set authentication
         ClientAuthentication auth = new ClientAuthentication(client);
