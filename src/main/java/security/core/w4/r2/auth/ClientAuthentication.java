@@ -7,11 +7,11 @@ import java.util.Collections;
 
 public class ClientAuthentication extends AbstractAuthenticationToken {
 
-    private final ApiClient client;
+    private final ApiClient principal;
 
-    public ClientAuthentication(ApiClient client) {
+    public ClientAuthentication(ApiClient principal) {
         super(Collections.singletonList(new SimpleGrantedAuthority("ROLE_API_CLIENT")));
-        this.client = client;
+        this.principal = principal;
         setAuthenticated(true);
     }
 
@@ -22,10 +22,6 @@ public class ClientAuthentication extends AbstractAuthenticationToken {
 
     @Override
     public Object getPrincipal() {
-        return client;
-    }
-
-    public ApiClient getClient() {
-        return client;
+        return principal;
     }
 }

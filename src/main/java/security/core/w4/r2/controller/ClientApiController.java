@@ -22,12 +22,12 @@ public class ClientApiController {
         ClientAuthentication auth = (ClientAuthentication)
             SecurityContextHolder.getContext().getAuthentication();
 
-        ApiClient client = auth.getClient();
+        ApiClient principal = (ApiClient) auth.getPrincipal();
 
         return ResponseEntity.ok(Map.of(
             "message", "Protected data",
-            "clientId", client.getClientId(),
-            "clientName", client.getName()
+            "clientId", principal.getClientId(),
+            "clientName", principal.getName()
         ));
     }
 }
